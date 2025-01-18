@@ -1,17 +1,24 @@
 import React, { useContext, useState } from 'react'
-import { AuthContext } from '../context/AuthProvider'
+import { AuthContext, useAuth } from '../context/AuthProvider'
 
 function CreateTask() {
-  const { userData, updateUserData } = useContext(AuthContext);
+  const { userData, updateUserData } = useAuth();
   
   const [taskTitle, setTaskTitle] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
   const [taskDate, setTaskDate] = useState('');
   const [assignTo, setAssignTo] = useState('');
   const [category, setCategory] = useState('');
+  const [error,setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
+
+    if (!assignTo) {
+      setError('Please select an employee to assign the task.');
+      return;
+    }
 
     const newTask = {
       taskNumber: Date.now(),
@@ -26,10 +33,10 @@ function CreateTask() {
     };
 
     const updatedUserData = userData.map(user => {
-      if (user.id === assignTo) {
+      if (user.id === parseInt(assignTo)) {
         return {
           ...user,
-          tasks: [...user.tasks, newTask],
+          tasks: [...(user.tasks || []), newTask],
           taskCount: {
             ...user.taskCount,
             newTask: (user.taskCount?.newTask || 0) + 1
@@ -54,6 +61,7 @@ function CreateTask() {
   return (
     <div className='bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4'>
       <h2 className='text-2xl font-bold mb-6 text-gray-800'>Create New Task</h2>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className='space-y-4'>
         <div>
           <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='taskTitle'>

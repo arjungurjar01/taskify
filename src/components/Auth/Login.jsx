@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react'
-import { AuthContext } from '../../context/AuthProvider'
+import React, { useState } from 'react'
+import { useAuth } from '../../context/AuthProvider'
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const { userData, login } = useContext(AuthContext);
+    const { userData, login } = useAuth();
 
     
 
@@ -18,7 +18,7 @@ function Login() {
         } else {
             const employee = userData.find(user => user.email === email && user.password === password);
             if (employee) {
-                login({ role: 'employee', ...employee });
+                login(employee);
             } else {
                 setError('Invalid email or password');
             }

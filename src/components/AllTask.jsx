@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../context/AuthProvider'
+import { useAuth } from '../context/AuthProvider'
 
 function AllTask() {
-  const { userData} = useContext(AuthContext);
+  const { userData} = useAuth();
   
- console.log(userData,'userdata at alltask')
+//  console.log(userData,'userdata at alltask')
   return (
     <div  className='bg-white shadow-lg rounded-lg overflow-hidden'>
       <h2 className='text-2xl font-bold p-4 bg-gray-100 text-gray-800'>All Tasks-</h2>

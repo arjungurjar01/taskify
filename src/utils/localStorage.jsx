@@ -227,4 +227,9 @@ export const employees = [
         return {employees:employeesData,admin:adminData}
   }
   
+  // Initialize localStorage with the employee data if it's empty
+if (!localStorage.getItem('employees')) {
+  setLocalStorage(employees, null);
+}
+
   console.log('LocalStorage after update:', JSON.parse(localStorage.getItem('employees')));

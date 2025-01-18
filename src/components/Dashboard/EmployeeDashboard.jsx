@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import TaskBox from "../TaskBox";
 import TaskList from "../TaskList/TaskList";
-import { AuthContext } from "../../context/AuthProvider";
 
 function EmployeeDashboard() {
   return (

@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../../context/AuthProvider'
+import { AuthContext, useAuth } from '../../context/AuthProvider'
 import NewTask from './NewTask'
 import AcceptTask from './AcceptTask'
 import CompleteTask from './CompleteTask'
 import FailedTask from './FailedTask'
 
 function TaskList() {
-  const { userData, updateUserData, currentUser } = useContext(AuthContext);
-
+  const { userData, updateUserData, currentUser } = useAuth();
+  console.log(userData,updateUserData,currentUser,'tasklist')
   const handleTaskAction = (taskNumber, action) => {
+    if (!currentUser) return;
+
     const updatedUserData = userData.map(user => {
       if (user.id === currentUser.id) {
         const updatedTasks = user.tasks.map(task => {
@@ -46,10 +48,10 @@ function TaskList() {
     updateUserData(updatedUserData);
   };
 
-  const userTasks = userData.find(user => user.id === currentUser.id)?.tasks || [];
+  const userTasks = currentUser?.tasks || [];
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 tasklist'>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 '>
       {userTasks.map((task, index) => {
         if (task.newTask) {
           return <NewTask key={index} data={task} onAction={handleTaskAction} />

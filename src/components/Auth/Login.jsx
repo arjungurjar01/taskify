@@ -13,7 +13,7 @@ function Login() {
         event.preventDefault();
         setError('');
 
-        if (email === 'admin@me.com' && password === '123') {
+        if (email === 'admin@example.com' && password === '123') {
             login({ role: 'admin', firstName: 'Admin' });
         } else {
             const employee = userData.find(user => user.email === email && user.password === password);
@@ -29,7 +29,8 @@ function Login() {
     }
 
     return (
-        <div className='flex h-screen w-screen items-center justify-center bg-gray-100'>
+        <div className='flex flex-col gap-4 h-screen w-screen items-center justify-center bg-gray-100'>
+           
             <div className='w-full max-w-md bg-white shadow-md rounded-lg p-8'>
                 <h1 className='text-3xl font-bold text-center mb-6'>Login</h1>
                 
@@ -40,7 +41,7 @@ function Login() {
                         </label>
                         <input 
                             id="email"
-                            value={email}
+                            // value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className='mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                                        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'
@@ -57,7 +58,7 @@ function Login() {
                         </label>
                         <input 
                             id="password"
-                            value={password}
+                            // value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className='mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                                        focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'
@@ -77,6 +78,13 @@ function Login() {
                         Login
                     </button>
                 </form>
+            </div>
+            <div className='flex flex-col bg-white rounded-md p-4 w-80 text-sm text-gray-600'>
+                <h2 className='font-semibold'>Demo Credentials for Testing</h2>
+               <p> <span className='font-semibold'>Admin Email:</span>  admin@example.com</p>
+                <p> <span className='font-semibold'>Employee Email : </span> employee1@example.com 
+                 to employee5@example.com  </p> 
+              <p>  <span className='font-semibold'>password :</span> 123</p>
             </div>
         </div>
     )

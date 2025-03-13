@@ -6,7 +6,7 @@ export const employees = [
     role:"employee",
     firstName: "Aarav",
     lastName:"Kohli",
-    email: "e@e.com",
+    email: "employee1@example.com",
     password: "123",
     taskCount: {
       active: 1,
@@ -208,7 +208,7 @@ export const employees = [
   export const admin = [
     {
       id: 1,
-      email: "admin@me.com",
+      email: "admin@example.com",
       password: "123",
       firstName:"Admin"
     }

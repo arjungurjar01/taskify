@@ -232,4 +232,4 @@ if (!localStorage.getItem('employees')) {
   setLocalStorage(employees, null);
 }
 
-  console.log('LocalStorage after update:', JSON.parse(localStorage.getItem('employees')));
+  //console.log('LocalStorage after update:', JSON.parse(localStorage.getItem('employees')));
